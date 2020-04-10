@@ -1,0 +1,24 @@
+CloudFront
+
+	Edge Location
+	Origin
+	Distribution (Name given for CDN for collection of Edge Locations)
+		Web Distrubition (Websites)
+		RTMP (Media Streaming)
+
+	Edge Locations are both READ and WRITE locations
+	TTL (Time to Live)
+	You will be charged to clear cache
+
+CloudFront Lab
+	
+Securing S3 Bucket
+	Bucket Policies
+	ACL
+	Log Setup
+
+
+		
+	
+		
+

@@ -1,0 +1,20 @@
+Elastic Load Balancer
+
+Lab
+	Launch EC2 Instance
+	Install httpd
+	create index.html healthcheck.html
+	Go to EC2 -> Load Balancer
+	Configuration Lister for Protocol 
+	Configure Healthcheck
+	Make note of ELB DNS Endpoint	
+
+Application Load Balancer (Layer 7) vs Classic Load Balancer (Layer 4)
+
+Lab
+
+Stickyness
+
+
+
+	

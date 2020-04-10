@@ -1,0 +1,9 @@
+Direct Connect (DX)
+-----------------
+High performance, Low latency, high bandwidth connection between on prem and AWS infrastruture.
+VPN over internet cant guarantee high performance without disrupption. 
+
+
+VPC (Virtual Private Gateway)------> AWS Direct Connection Location---------------> Customer or Partner Router -----------> Customer Data Center
+
+1 GBPS or 10 GBPS connection pipe

@@ -1,0 +1,13 @@
+Identity Access Management
+	Centralized Access to AWS Account
+	Shared Access to AWS Account
+	Granular Permissions
+	Identity Federation (AD, FB, Google, Linkedin)
+
+Users, Groups, Role, Policy
+	IAM Does not have region
+
+Billing Alarm
+
+
+	

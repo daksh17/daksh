@@ -1,0 +1,51 @@
+AWS CLI
+
+	Launch EC2 Instance
+	Create IAM User for CLI
+	Associate with Admin Policy
+
+#aws s3 ls
+<Error>
+#aws configure
+	AWS Access Key: < >
+	AWS Secret Key: < >
+	Default Region: < >
+	Defaukt Output: < >
+
+#aws s3 ls
+#aws s3 help
+
+#cd ~/.aws/
+#cat credentials
+
+#aws ec2 describe-instances
+#aws ec2 terminate-instances --instances-id i-0055c406a89d1003c
+
+
+-------------IAM Role for EC2------------------------
+
+Create IAM Role
+Assign role to EC2
+Launch Instance
+
+#aws s3 ls
+
+
+------------------Shell Scripting with EC2 and S3--------------------------
+
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+cd /var/www/html
+aws s3 cp s3://<bucketname>/index.html /var/www/html --recursive
+
+aws s3 cp s3://mytectrawebsite/index.html /var/www/html --region eu-west-2
+
+-----------------EC2 Instance Metadata------------------------------------
+
+curl http://169.254.169.254/latest/meta-data/
+curl http://169.254.169.254/latest/meta-data/public-ipv4 > /var/www/html/myip.html
+ 
+

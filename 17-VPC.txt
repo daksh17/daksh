@@ -1,0 +1,125 @@
+VPC
+
+	Logical Isolated Section of AWS Services (and Data Center)
+	Full Control over networking such as IP selection, subnet, route tables, network gateways
+	Site to Site VPN-VPC Peering is possible using Virtual Private Gateway
+	Consists of Multiple subnet. Subnet cant span across region
+	
+
+Public Subnet vs Private Subnet
+
+Internet Gateway
+
+Security Group vs NACL
+
+	SG works on Instance level / NACL works on network level
+	SG supports only allow rules / NACL supports both allow and deny rules
+	SG are Stateful, return traffic is automatically allowed / NACL are stateless, return traffic must be explicitly allowed by rules
+	in SG all rules are processed to allow traffic / rules r processed in numaric order to process traffic
+
+
+Default VPC vs Custom VPC
+
+	All Subnet is default VPC have access to internet
+	Each EC2 instance has both public and private IPs
+	If you delete default VPC, contact AWS for restoration
+	maximum 5 VPC inside one region
+
+VPC Peering
+	
+	VPC peering into corporate networking using Direct Connect.
+	VPC peering into another AWS account
+	VPC peering into another VPC of same account
+	Peering in star configuration. No Transitive Peering
+	
+
+VPC Lab:
+
+	1. Create VPC (Route Table and NACL)
+	2. Create Subnet
+		Create Public Subnet 10.0.1.0 in one AZ
+		Private Subnet	10.0.2.0 in another AZ
+			One Subnet = 1 AZ
+			3 Reserved Addresses -> VPC IP Reservation (Router, DNS, Future Use)
+			2 Other reserved address -> .0 for Network Address, .255 for braodcast
+	3. Make 1st Subnet as Public Subnet by creating and attaching Internet Gateway to VPC
+	4. Create a (non-main)route table to route out to the internet
+			Local Route			
+	5. In Route Table -> Edit Routes for Route Table to allow all traffic 0.0.0.0/0 to Internet by internet gateway
+	6. In Route Table -> Associate Subnet (10.0.1.0) to make it public subnet
+			Note: Any subnet not associated with any route table will get associated with main route table
+	7. From Subnet -> Select Public Subnet -> Enable Auto Assign Public IP
+	8. Deploy 1st Web Server instance in new VPC public subnet
+		Bootstrap
+		#!/bin/bash
+		yum install httpd -y
+		yum update -y
+		service httpd start
+		chkconfig httpd on
+		echo "<html><h1>Hellow World</h1></html> > /var/www/html/index.html
+	9. Deploy 2nd DB instance in new VPC private subnet
+		In Security Group, allow port 22, allow 3306 to 10.0.1.0/24, allow all ICMP to 10.0.1.0/24
+	10. Log in to Webserver. 
+		#ssh into DB server. ssh ec2-user@10.0.2.xyz -i mykey.pem
+		#sudo su -
+		#yum update -y (Fails)
+
+NAT Instance 
+
+	11. Launch EC2 instance for NAT Instance
+		Community AMI -> Search "NAT"
+		Use Public Subnet
+		Port SSH to local machine
+	12. Enable Source Destination Check
+	13. Allow HTTPS in security group
+	14. Go to VPC -> Route Table -> Change main route table -> route -> add 0.0.0.0/0 + Target NAT instance
+	15. Log in into DB instance #yum install mysql -y
+	16. yum remove mysql
+
+NAT Gateway
+
+	16. VPC -> NAT Gateway -> Create NAT Gateway into public subnet -> Create a new elastic IP
+	17. Go to VPC -> Route Table -> Change main route table -> route -> add 0.0.0.0/0 + Target NAT Gateway
+	18. Log in into DB instance #yum install mysql -y
+		
+Comparison between NAT Instance and NAT Gateway		
+	
+	
+Default NACL-> All inbound and outbound traffic is allowed
+Custom NACL -> No inbound or outbound traffic is allowed
+
+One subnet can only be associated with on NACL
+
+	19. Create a new NACL in custom VPC
+	20. Chk website status
+	21. Associate Subnet to NACL
+	22. Chk Website status
+	23. Allow HTTP (100), HTTPS, SSH, RDP(400) in inbound and outbound rule from number 100-400
+
+Ephemeral Ports
+	
+	24. Add custom port 1024-65535 in NACL in both inbound and outbound rule
+	
+	25. Block own IP
+		Create HTTP deny rule on rule number 101
+		Website works fine
+		Create HTTP deny rule on rule numner 99
+		Website does not work
+Rules always take precendence in order. Lower number rule overrides higher number rule
+Each Subnet in VPC is always associated with one and only one NACL 
+ 
+			
+Bastion Host
+	
+VPC Flowlogs
+
+	26. VPC -> Action -> Create Flowlogs -> Create log group -> create IAM role -> Finish
+	27. Cloudwatch -> Logs -> Create Log stream
+	28. Access Website
+	29. Cloudwatch -> Logs -> Logstream -> Check details
+
+Cleanup
+	
+
+
+

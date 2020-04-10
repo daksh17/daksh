@@ -1,0 +1,24 @@
+CloudWatch
+	You can monitor
+		Compute
+			Autoscaling Groups
+			ELB
+			Route 53 Healthchecks
+		Storage
+			EBS Volume
+			Storage Gateway
+			CloudFront
+		Database & Analytics
+			Dynamo DB
+			Elastic Nodes
+			RDS Instance
+			Elastic MapReduce Job Flows
+			Redshift
+		Estimated AWS Billing
+		SNS Topics
+		SQS Queues
+		Opswork
+		CloudWatch Logs
+
+EC2 Host Level Monitoring
+	CPU, Network, Disk, Status Check

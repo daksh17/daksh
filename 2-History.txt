@@ -1,0 +1,16 @@
+AWS History
+
+	Impact of AWS on Startup
+	2003 - Amazon effort to put their Corporate Servers on Cloud
+	2006 - Launch of AWS
+	SQS and EC2 Launch
+	2007 - 1,80,000 Developers
+	2010- Amazon.com moved to AWS
+	2012 - First Reinvent
+	2013 - Certification Launched
+	
+	Gartner's Magic Quadrant
+	2015 - AWS as Leader in IaaS for 5th year in a row
+	
+
+	

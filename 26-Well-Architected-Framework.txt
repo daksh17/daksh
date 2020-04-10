@@ -1,0 +1,33 @@
+Well Architected Framework
+
+Set of questions that you can use to evaluate how well your aws architecture is aligned with AWS best practices
+
+5 Pillers
+	Security
+	Reliability
+	Performance Efficiency
+	Cost Optimization
+	Operational Excellence
+
+
+Design Principles
+Definition
+Best Practices
+Key AWS Services
+Resources
+
+General Design Principles
+	Stop Guessing your capacity needs
+	Test Systems at production scale (For ex: Making Use of CloudFormation)
+	Automate to make architecture experimentation easier
+	Allow for evolutionary architecture (Always Keep provisions for architectural changes)
+	Data Driven Architecture
+	Improve through Game Days
+
+
+			
+				
+			
+
+
+
